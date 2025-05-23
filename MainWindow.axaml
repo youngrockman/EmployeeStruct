@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:EmployeeStruct.Models"
+        mc:Ignorable="d"
+        x:Class="EmployeeStruct.MainWindow"
+        Title="Employee Structure Management"
+        Width="1400" Height="800">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="600"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="0 0 1 0">
+			<ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+				<Canvas x:Name="OrgCanvas" Background="White" MinHeight="2000">
+				</Canvas>
+			</ScrollViewer>
+		</Border>
+
+		
+		<Grid Grid.Column="1" Margin="15">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="15">
+				<Button Content="Добавить" Click="AddEmployee_Click"
+                        MinWidth="100" Padding="10 5"/>
+				<Button Content="Обновить" Click="Refresh_Click"
+                        MinWidth="100" Padding="10 5"/>
+				<TextBox x:Name="SearchBox" Watermark="Поиск..."
+                         Width="250" TextChanged="SearchBox_TextChanged"/>
+			</StackPanel>
+
+		
+			<DataGrid Grid.Row="1" x:Name="EmployeesGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+					  x:DataType="models:Employee">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="ID" Binding="{Binding Employeeid}" Width="Auto"/>
+					<DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="*"/>
+					<DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="*"/>
+					<DataGridTextColumn Header="Должность"
+                                      Binding="{Binding Position.Positionname}" Width="*"/>
+					<DataGridTextColumn Header="Подразделение"
+                                      Binding="{Binding Subdivision.Subdivisionname}" Width="*"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+	</Grid>
+</Window>
