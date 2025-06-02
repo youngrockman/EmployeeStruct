@@ -14,6 +14,8 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
+        
         <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="0 0 1 0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Text="Структура организации"
@@ -37,7 +39,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
             <StackPanel Orientation="Horizontal" Spacing="10" Grid.Row="0">
                 <Button Content="Добавить" Click="AddEmployee_Click"/>
                 <Button Content="Обновить" Click="Refresh_Click"/>
@@ -49,10 +50,29 @@
                      ItemsSource="{Binding Employees}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Lastname}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Position.Positionname}" FontStyle="Italic" FontSize="12"/>
-                        </StackPanel>
+                        <Border BorderBrush="LightGray" BorderThickness="0 0 0 1" Padding="8">
+                            <StackPanel>
+                                <TextBlock>
+                                    <Run Text="{Binding Lastname}"/>
+                                    <Run Text=" "/>
+                                    <Run Text="{Binding Firstname}"/>
+                                    <Run Text=" "/>
+                                    <Run Text="{Binding Middlename}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Должность: "/>
+                                    <Run Text="{Binding Position.Positionname}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Телефон: "/>
+                                    <Run Text="{Binding Workphone}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Email: "/>
+                                    <Run Text="{Binding Email}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
