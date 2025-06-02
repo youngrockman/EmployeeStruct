@@ -47,7 +47,8 @@
             <ListBox x:Name="EmployeeListBox"
                      Grid.Row="1"
                      Margin="0,10,0,0"
-                     ItemsSource="{Binding Employees}">
+                     ItemsSource="{Binding Employees}"
+                     DoubleTapped="EmployeeListBox_DoubleTapped">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="0 0 0 1" Padding="8">

@@ -36,6 +36,31 @@ namespace EmployeeStruct
                 OnPropertyChanged();
             }
         }
+        
+        private async void EmployeeListBox_DoubleTapped(object? sender, RoutedEventArgs e)
+        {
+            if (EmployeeListBox.SelectedItem is Employee selectedEmployee)
+            {
+                
+                var employeeFromDb = db.Employees
+                    .Include(e => e.Position)
+                    .Include(e => e.Subdivision)
+                    .First(e => e.Employeeid == selectedEmployee.Employeeid);
+
+               
+                var dialog = new EmployeeEditWindow(employeeFromDb, isEditMode: false);
+            
+             
+                var result = await dialog.ShowDialog<bool>(this);
+            
+               
+                if (result)
+                {
+                    LoadAllEmployees();
+                }
+            }
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)

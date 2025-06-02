@@ -28,4 +28,10 @@
     <AvaloniaResource Include="**\*.png" />
     <AvaloniaResource Include="**\*.jpg" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MassageBox.axaml.cs">
+      <DependentUpon>MassageBox.axaml.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
